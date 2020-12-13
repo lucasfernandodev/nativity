@@ -1,6 +1,6 @@
 
 (function () {
-    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ||
+    let requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame ||
         function (callback) {
             window.setTimeout(callback, 1000 / 60);
         };
@@ -8,9 +8,9 @@
 })();
 
 
-var flakes = [],
-    canvas = document.getElementById("canvas"),
-    ctx = canvas.getContext("2d"),
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+let flakes = [],
     flakeCount = 400,
     mX = -100,
     mY = -100
@@ -21,20 +21,20 @@ canvas.height = window.innerHeight;
 function snow() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (var i = 0; i < flakeCount; i++) {
-        var flake = flakes[i],
+    for (let i = 0; i < flakeCount; i++) {
+        let flake = flakes[i],
             x = mX,
             y = mY,
             minDist = 150,
             x2 = flake.x,
             y2 = flake.y;
 
-        var dist = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y)),
+        let dist = Math.sqrt((x2 - x) * (x2 - x) + (y2 - y) * (y2 - y)),
             dx = x2 - x,
             dy = y2 - y;
 
         if (dist < minDist) {
-            var force = minDist / (dist * dist),
+            let force = minDist / (dist * dist),
                 xcomp = (x - x2) / dist,
                 ycomp = (y - y2) / dist,
                 deltaV = force / 2;
@@ -81,8 +81,8 @@ function reset(flake) {
 }
 
 function init() {
-    for (var i = 0; i < flakeCount; i++) {
-        var x = Math.floor(Math.random() * canvas.width),
+    for (let i = 0; i < flakeCount; i++) {
+        let x = Math.floor(Math.random() * canvas.width),
             y = Math.floor(Math.random() * canvas.height),
             size = (Math.random() * 3) + 2,
             speed = (Math.random() * 1) + 0.5,
